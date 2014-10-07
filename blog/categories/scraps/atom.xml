@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Scraps | My Octopress Blog]]></title>
+  <title><![CDATA[Category: Scraps | Dados Abertos SJC]]></title>
   <link href="http://transparenciasjc.github.io/blog/categories/scraps/atom.xml" rel="self"/>
   <link href="http://transparenciasjc.github.io/"/>
-  <updated>2014-10-07T13:39:23+00:00</updated>
+  <updated>2014-10-07T13:42:14+00:00</updated>
   <id>http://transparenciasjc.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Transparência SJC]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
