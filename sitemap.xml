@@ -2,17 +2,81 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2014/07/18/manual-dos-dados-abertos/</loc>
+    
+    <lastmod>2014-07-18T18:42:42+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/12/03/reportagem-para-o-jornal-o-vale/</loc>
+    
+    <lastmod>2013-12-03T17:56:19+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/11/18/porto-alegre-e-o-portal-de-dados-abertos/</loc>
+    
+    <lastmod>2013-11-18T11:01:00+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/11/14/panorama-dos-dados-abertos-em-sao-jose-dos-campos/</loc>
+    
+    <lastmod>2013-11-14T16:06:58+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/</loc>
+    
+    <lastmod>2013-10-31T13:47:58+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/10/31/dados-abertos-em-web-services/</loc>
+    
+    <lastmod>2013-10-31T12:37:10+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2013/10/08/salarios-da-prefeitura-de-sao-jose-dos-campos/</loc>
+    
+    <lastmod>2013-10-08T16:12:15+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://transparenciasjc.github.io/blog/2012/01/20/dadosabertos/</loc>
+    
+    <lastmod>2012-01-20T14:47:13+00:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
   
   <url>
     <loc>http://transparenciasjc.github.io/</loc>
-    <lastmod>2014-10-07T13:05:53+00:00</lastmod>
+    <lastmod>2014-10-07T13:39:23+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://transparenciasjc.github.io/blog/archives/</loc>
-    <lastmod>2014-10-07T13:05:53+00:00</lastmod>
+    <lastmod>2014-10-07T13:39:23+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

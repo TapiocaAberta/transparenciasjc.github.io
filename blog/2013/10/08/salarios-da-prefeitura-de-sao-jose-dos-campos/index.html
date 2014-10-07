@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Salários Da Prefeitura De São José Dos Campos. - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Você sabe quantas folhas de pagamento a prefeitura emite? você sabe qual é o maior salário que a prefeitura paga? você sabia que a prefeitura publica &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://transparenciasjc.github.io/blog/2013/10/08/salarios-da-prefeitura-de-sao-jose-dos-campos">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:transparenciasjc.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Salários Da Prefeitura De São José Dos Campos.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-08T16:12:15+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:12 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Você sabe quantas folhas de pagamento a prefeitura emite? você sabe qual é o maior salário que a prefeitura paga? você sabia que a prefeitura publica estes dados e que você pode ter acesso a isto? Neste artigo vamos analisar estes dados e acompanhar de perto os pagamentos dos últimos meses.</p>
+
+<!-- more -->
+
+
+<p>A prefeitura de São José dos Campos publica, através do portal de transparência, diversos dados sobre finanças, legislações entre outros. Estes dados, porém, são publicados em formato txt que é um arquivo de texto simples formatado em <a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a>.</p>
+
+<p>O grande problema da formatação que eles utilizam é que ela dificulta a análise destes dados, e consequentemente a modificação do documento para que ele torne-se mais visível por humanos.</p>
+
+<p>Porém, é possível converter estes dados para formatos mais legíveis tais como JSON, XML, entre outros, possibilitando assim a criação de formas de análise sobre estes dados. Foi o que eu fiz, converti estes dados para formatos legíveis por máquina, e deixei eles disponíveis <a href="https://drive.google.com/folderview?id=0ByfJ1OA070nKMEhibFFSX3Z4Q28&amp;usp=sharing">aqui</a> para que qualquer programador ou curioso possa analisar.</p>
+
+<p>Por exemplo, os salários estão disponíveis <a href="http://www.sjc.sp.gov.br/servicos/portal_da_transparencia/salarios.aspx">neste link</a> porém, veja a forma com que ele é mostrado ao usuário:</p>
+
+<p>[caption id=&ldquo;attachment_29&rdquo; align=&ldquo;aligncenter&rdquo; width=&ldquo;300&rdquo;]<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-08-at-12.28.11.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-08-at-12.28.11-300x135.png" alt="Salários no site da prefeitura" /></a> Salários no site da prefeitura[/caption]</p>
+
+<p>é uma tabela tosca da qual não se pode fazer filtros, não se pode comparar cada um dos registros, não se pode analisar com períodos anteriores, etc. o botão exportar nos fornece o dado da seguinte forma:</p>
+
+<pre><code>ANO;MÊS;ITEM;CARGO;FUNÇÃO GRATIFICADA;TEMPO DE SERVIÇO (ANOS);REMUNERAÇÃO DO MÊS;VERBA EVENTUAL
+2013;08;1;ADMINISTRADOR DISTRITAL ;;0;2.241,68;8.598,78
+2013;08;2;ADMINISTRADOR DISTRITAL ;;23;7.996,82;0,00
+</code></pre>
+
+<p>não, isto não é legal. Mas já é alguma coisa. Pegando estes dados e transformando ele em um JSON por exemplo, ele fica da seguinte maneira:</p>
+
+<pre><code>{
+    "ANO": 2013,
+    "MÊS": 07,
+    "ITEM": 1,
+    "CARGO": "ADMINISTRADOR DISTRITAL ",
+    "FUNÇÃO GRATIFICADA": "",
+    "TEMPO DE SERVIÇO (ANOS)": 0,
+    "REMUNERAÇÃO DO MÊS": "6.054,23",
+    "VERBA EVENTUAL": "0,00"
+},
+{
+    "ANO": 2013,
+    "MÊS": 07,
+    "ITEM": 2,
+    "CARGO": "ADMINISTRADOR DISTRITAL ",
+    "FUNÇÃO GRATIFICADA": "",
+    "TEMPO DE SERVIÇO (ANOS)": 23,
+    "REMUNERAÇÃO DO MÊS": "7.996,82",
+    "VERBA EVENTUAL": "0,00"
+}
+</code></pre>
+
+<p>Isto é um pouco mais legível, mas a forma ideal da publicação dos dados seria através de um <a href="pt.wikipedia.org/wiki/Web_service">web service</a>, que são serviços que permitem com que o dado seja filtrada diretamente na requisição, isso sim é que é seria transparência de verdade.</p>
+
+<p>Veja <a href="http://transparenciasjc.github.io/salarios/">esta app</a> que foi criada a partir dos dados disponíveis no portal de transparência, agora é possível visualizarmos de maneira amigável.</p>
+
+<p>É possível também analisarmos estes dados em uma tabela comum no google docs disponível logo abaixo. Através dela, podemos fazer filtro de quem ganha mais, quem ganha menos, qual a profissão, quantidade de folhas de pagamento.</p>
+
+<p>Agora sim já temos uma evolução.</p>
+
+<p>Planilha de Setembro / 2013 :</p>
+
+<p>Lembrando que todos os dados estão disponíveis da forma bonita<a href="https://drive.google.com/folderview?id=0ByfJ1OA070nKMEhibFFSX3Z4Q28&amp;usp=sharing"> aqui</a>, este dado é NOSSO, e este foi apenas um pequeno exemplo do poder de transformação que a tecnologia da informação pode nos trazer.</p>
+
+<p>Em breve trarei muitas novidades e aplicativos interessantes.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">transparencia</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-10-08T16:12:15+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:12 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/transparencia/'>transparência</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://transparenciasjc.github.io/blog/2013/10/08/salarios-da-prefeitura-de-sao-jose-dos-campos/" data-via="" data-counturl="http://transparenciasjc.github.io/blog/2013/10/08/salarios-da-prefeitura-de-sao-jose-dos-campos/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/01/20/dadosabertos/" title="Previous Post: Transparência e dados abertos em São José dos Campos.">&laquo; Transparência e dados abertos em São José dos Campos.</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/10/31/dados-abertos-em-web-services/" title="Next Post: Dados abertos em web services.">Dados abertos em web services. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/18/manual-dos-dados-abertos/">Manual Dos Dados Abertos</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/03/reportagem-para-o-jornal-o-vale/">Reportagem Para O Jornal "O Vale"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/18/porto-alegre-e-o-portal-de-dados-abertos/">Porto Alegre E O Portal De Dados Abertos.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/14/panorama-dos-dados-abertos-em-sao-jose-dos-campos/">Panorama Dos Dados Abertos Em São José Dos Campos.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/">Raspando Os Dados Do Site Da Câmara De São José Dos Campos.</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

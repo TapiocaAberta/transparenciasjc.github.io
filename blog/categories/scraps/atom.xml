@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scraps | My Octopress Blog]]></title>
+  <link href="http://transparenciasjc.github.io/blog/categories/scraps/atom.xml" rel="self"/>
+  <link href="http://transparenciasjc.github.io/"/>
+  <updated>2014-10-07T13:39:23+00:00</updated>
+  <id>http://transparenciasjc.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Raspando Os Dados Do Site Da Câmara De São José Dos Campos.]]></title>
+    <link href="http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/"/>
+    <updated>2013-10-31T13:47:58+00:00</updated>
+    <id>http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos</id>
+    <content type="html"><![CDATA[<p>Neste artigo analisaremos a forma com que a Câmara de São José dos Campos publica os dados de transparência, e como seria o modelo ideal para esta publicação. Além disto, mostraremos com códigos como fazer para transformar este dado em um objeto manipulável.</p>
+
+<!-- more -->
+
+
+<p>Acesse este <a href="http://200.174.132.60:8080/cmsjc/websis/portal_transparencia/financeiro/contas_publicas/index.php?consulta=cp_transp_desp_paga">link</a>, ele contem dados dos gastos da câmara, ele estão disponíveis através de uma tabela:<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png" alt="Screen Shot 2013-10-31 at 11.16.32" /></a></p>
+
+<p>Conforme já citei, este não é o modelo ideal de publicação, pois não permite comparações, manipulação, e cruzamento com outros dados.</p>
+
+<p>Para chegarmos na forma ideal, clique com o botão direito em qualquer local da página e em seguida em &ldquo;inspecionar elemento&rdquo; ou &ldquo;inspect element&rdquo;,</p>
+
+<p><a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png" alt="Screen Shot 2013-10-31 at 08.43.16" /></a></p>
+
+<p>Isto vai abrir uma tela que geralmente desenvolvedores e designer utilizam para verificar os elementos HTML e debugar código Javascript. Vá até a última aba chamada &ldquo;console&rdquo;.</p>
+
+<p>[caption id=&ldquo;attachment_80&rdquo; align=&ldquo;aligncenter&rdquo; width=&ldquo;500&rdquo;]<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png" alt="Console" /></a> Console[/caption]</p>
+
+<p>Dentro do console digite o seguinte código:</p>
+
+<pre><code>(function ($) {
+    $.fn.tableToJSON = function (opts) {
+
+        // Set options
+        var defaults = {
+            ignoreColumns: [],
+            onlyColumns: null,
+            ignoreHiddenRows: true,
+            headings: null
+        };
+        opts = $.extend(defaults, opts);
+
+        var notNull = function (value) {
+            if (value !== undefined &amp;&amp; value !== null) {
+                return true;
+            }
+            return false;
+        };
+
+        var ignoredColumn = function (index) {
+            if (notNull(opts.onlyColumns)) {
+                return $.inArray(index, opts.onlyColumns) === -1;
+            }
+            return $.inArray(index, opts.ignoreColumns) !== -1;
+        };
+
+        var arraysToHash = function (keys, values) {
+            var result = {};
+            $.each(values, function (index, value) {
+                if (index &lt; keys.length) {
+                    result[keys[index]] = value;
+                }
+            });
+            return result;
+        };
+
+        var rowValues = function (row) {
+            var result = [];
+            $(row).children("td,th").each(function (cellIndex, cell) {
+                if (!ignoredColumn(cellIndex)) {
+                    var override = $(cell).data("override");
+                    var value = $.trim($(cell).text());
+                    result[result.length] = notNull(override) ? override : value;
+                }
+            });
+            return result;
+        };
+
+        var getHeadings = function (table) {
+            var firstRow = table.find("tr:first").first();
+            return notNull(opts.headings) ? opts.headings : rowValues(firstRow);
+        };
+
+        var construct = function (table, headings) {
+            var result = [];
+            table.children("tbody,*").children("tr").each(function (rowIndex, row) {
+                if (rowIndex !== 0 || notNull(opts.headings)) {
+                    if ($(row).is(":visible") || !opts.ignoreHiddenRows) {
+                        result[result.length] = arraysToHash(headings, rowValues(row));
+                    }
+                }
+            });
+            return result;
+        };
+
+        // Run
+        var headings = getHeadings(this);
+        return construct(this, headings);
+    };
+})(jQuery);
+</code></pre>
+
+<p>Aperte CTRL + L para limpar o terminal. Digite em seguida o seguinte comando:</p>
+
+<pre><code>var table = $("#grid")
+var object = table.tableToJSON();
+var json = JSON.stringify(object);
+</code></pre>
+
+<p>Agora toda aquela tabela foi transformada em um Objeto JSON que permite ser manipulado. O resultado ideal de publicação dos dados de transparência, seria o objeto transformado em texto, que no caso acima é a variável &ldquo;json&rdquo;.</p>
+
+<p>Este foi o exemplo para apenas uma página, imagina raspar 1000 páginas destas? para isto teríamos que criar um script que recursivamente acessa as URLs e transforma o dado.</p>
+
+<p>Por isso é importante que a prefeitura/câmara publique os dados de maneira legível, pois isso acaba com a inovação. Os programadores da região perdem mais tempo &ldquo;raspando&rdquo; os dados do que fazendo aplicativos que realmente beneficiariam a sociedade, dado que raspar os dados por vezes se torna uma tarefa chata e complexa.</p>
+
+<p>O código fonte pode ser baixado <a href="https://gist.github.com/PauloLuan/7250003">aqui</a>;</p>
+
+<p>Os dados podem ser baixados <a href="https://gist.github.com/PauloLuan/7249980/raw/8acc126d2afc47acf1435f236c87404ff8743c03/Dados+C%C3%A2mara+Setembro">Aqui</a></p>
+
+<p>Fonte: <a href="https://github.com/lightswitch05/table-to-json">Biblioteca para transformar tabela em JSON</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

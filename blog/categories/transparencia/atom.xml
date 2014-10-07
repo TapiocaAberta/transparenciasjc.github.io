@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://transparenciasjc.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Transparência | My Octopress Blog]]></title>
+  <link href="http://transparenciasjc.github.io/blog/categories/transparencia/atom.xml" rel="self"/>
   <link href="http://transparenciasjc.github.io/"/>
   <updated>2014-10-07T13:39:23+00:00</updated>
   <id>http://transparenciasjc.github.io/</id>
@@ -12,17 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Manual Dos Dados Abertos]]></title>
-    <link href="http://transparenciasjc.github.io/blog/2014/07/18/manual-dos-dados-abertos/"/>
-    <updated>2014-07-18T18:42:42+00:00</updated>
-    <id>http://transparenciasjc.github.io/blog/2014/07/18/manual-dos-dados-abertos</id>
-    <content type="html"><![CDATA[<p>Você é gestor do governo ou tem interesse em saber mais sobre dados abertos? <a href="http://www.w3c.br/pub/Materiais/PublicacoesW3C/Manual_Dados_Abertos_WEB.pdf">leia isso</a></p>
-
-<p>Você é desenvolvedor e quer entender mais sobre dados abertos? leia o anterior e <a href="http://www.w3c.br/pub/Materiais/PublicacoesW3C/manual_dados_abertos_desenvolvedores_web.pdf">este daqui</a> também:</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reportagem Para O Jornal "O Vale"]]></title>
@@ -279,123 +268,6 @@ Com dados específicos e de alto grau de detalhamento sobre áreas como mobilida
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Raspando Os Dados Do Site Da Câmara De São José Dos Campos.]]></title>
-    <link href="http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/"/>
-    <updated>2013-10-31T13:47:58+00:00</updated>
-    <id>http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos</id>
-    <content type="html"><![CDATA[<p>Neste artigo analisaremos a forma com que a Câmara de São José dos Campos publica os dados de transparência, e como seria o modelo ideal para esta publicação. Além disto, mostraremos com códigos como fazer para transformar este dado em um objeto manipulável.</p>
-
-<!-- more -->
-
-
-<p>Acesse este <a href="http://200.174.132.60:8080/cmsjc/websis/portal_transparencia/financeiro/contas_publicas/index.php?consulta=cp_transp_desp_paga">link</a>, ele contem dados dos gastos da câmara, ele estão disponíveis através de uma tabela:<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png" alt="Screen Shot 2013-10-31 at 11.16.32" /></a></p>
-
-<p>Conforme já citei, este não é o modelo ideal de publicação, pois não permite comparações, manipulação, e cruzamento com outros dados.</p>
-
-<p>Para chegarmos na forma ideal, clique com o botão direito em qualquer local da página e em seguida em &ldquo;inspecionar elemento&rdquo; ou &ldquo;inspect element&rdquo;,</p>
-
-<p><a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png" alt="Screen Shot 2013-10-31 at 08.43.16" /></a></p>
-
-<p>Isto vai abrir uma tela que geralmente desenvolvedores e designer utilizam para verificar os elementos HTML e debugar código Javascript. Vá até a última aba chamada &ldquo;console&rdquo;.</p>
-
-<p>[caption id=&ldquo;attachment_80&rdquo; align=&ldquo;aligncenter&rdquo; width=&ldquo;500&rdquo;]<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png" alt="Console" /></a> Console[/caption]</p>
-
-<p>Dentro do console digite o seguinte código:</p>
-
-<pre><code>(function ($) {
-    $.fn.tableToJSON = function (opts) {
-
-        // Set options
-        var defaults = {
-            ignoreColumns: [],
-            onlyColumns: null,
-            ignoreHiddenRows: true,
-            headings: null
-        };
-        opts = $.extend(defaults, opts);
-
-        var notNull = function (value) {
-            if (value !== undefined &amp;&amp; value !== null) {
-                return true;
-            }
-            return false;
-        };
-
-        var ignoredColumn = function (index) {
-            if (notNull(opts.onlyColumns)) {
-                return $.inArray(index, opts.onlyColumns) === -1;
-            }
-            return $.inArray(index, opts.ignoreColumns) !== -1;
-        };
-
-        var arraysToHash = function (keys, values) {
-            var result = {};
-            $.each(values, function (index, value) {
-                if (index &lt; keys.length) {
-                    result[keys[index]] = value;
-                }
-            });
-            return result;
-        };
-
-        var rowValues = function (row) {
-            var result = [];
-            $(row).children("td,th").each(function (cellIndex, cell) {
-                if (!ignoredColumn(cellIndex)) {
-                    var override = $(cell).data("override");
-                    var value = $.trim($(cell).text());
-                    result[result.length] = notNull(override) ? override : value;
-                }
-            });
-            return result;
-        };
-
-        var getHeadings = function (table) {
-            var firstRow = table.find("tr:first").first();
-            return notNull(opts.headings) ? opts.headings : rowValues(firstRow);
-        };
-
-        var construct = function (table, headings) {
-            var result = [];
-            table.children("tbody,*").children("tr").each(function (rowIndex, row) {
-                if (rowIndex !== 0 || notNull(opts.headings)) {
-                    if ($(row).is(":visible") || !opts.ignoreHiddenRows) {
-                        result[result.length] = arraysToHash(headings, rowValues(row));
-                    }
-                }
-            });
-            return result;
-        };
-
-        // Run
-        var headings = getHeadings(this);
-        return construct(this, headings);
-    };
-})(jQuery);
-</code></pre>
-
-<p>Aperte CTRL + L para limpar o terminal. Digite em seguida o seguinte comando:</p>
-
-<pre><code>var table = $("#grid")
-var object = table.tableToJSON();
-var json = JSON.stringify(object);
-</code></pre>
-
-<p>Agora toda aquela tabela foi transformada em um Objeto JSON que permite ser manipulado. O resultado ideal de publicação dos dados de transparência, seria o objeto transformado em texto, que no caso acima é a variável &ldquo;json&rdquo;.</p>
-
-<p>Este foi o exemplo para apenas uma página, imagina raspar 1000 páginas destas? para isto teríamos que criar um script que recursivamente acessa as URLs e transforma o dado.</p>
-
-<p>Por isso é importante que a prefeitura/câmara publique os dados de maneira legível, pois isso acaba com a inovação. Os programadores da região perdem mais tempo &ldquo;raspando&rdquo; os dados do que fazendo aplicativos que realmente beneficiariam a sociedade, dado que raspar os dados por vezes se torna uma tarefa chata e complexa.</p>
-
-<p>O código fonte pode ser baixado <a href="https://gist.github.com/PauloLuan/7250003">aqui</a>;</p>
-
-<p>Os dados podem ser baixados <a href="https://gist.github.com/PauloLuan/7249980/raw/8acc126d2afc47acf1435f236c87404ff8743c03/Dados+C%C3%A2mara+Setembro">Aqui</a></p>
-
-<p>Fonte: <a href="https://github.com/lightswitch05/table-to-json">Biblioteca para transformar tabela em JSON</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Dados Abertos Em Web Services.]]></title>
     <link href="http://transparenciasjc.github.io/blog/2013/10/31/dados-abertos-em-web-services/"/>
     <updated>2013-10-31T12:37:10+00:00</updated>
@@ -501,28 +373,6 @@ var json = JSON.stringify(object);
 <p>Lembrando que todos os dados estão disponíveis da forma bonita<a href="https://drive.google.com/folderview?id=0ByfJ1OA070nKMEhibFFSX3Z4Q28&amp;usp=sharing"> aqui</a>, este dado é NOSSO, e este foi apenas um pequeno exemplo do poder de transformação que a tecnologia da informação pode nos trazer.</p>
 
 <p>Em breve trarei muitas novidades e aplicativos interessantes.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Transparência E Dados Abertos Em São José Dos Campos.]]></title>
-    <link href="http://transparenciasjc.github.io/blog/2012/01/20/dadosabertos/"/>
-    <updated>2012-01-20T14:47:13+00:00</updated>
-    <id>http://transparenciasjc.github.io/blog/2012/01/20/dadosabertos</id>
-    <content type="html"><![CDATA[<p>Para a maior parte dos cidadãos brasileiros, dados e informações governamentais possuem o mesmo significado. Já para pesquisadores, universitários, jornalistas, empresários e pessoas ligadas à Tecnologia da Informação (TI), a diferença é enorme, pois nem sempre as informações podem ser lidas por uma máquina, por exemplo. Ao publicar seus dados em formato aberto, o governo permite o livre cruzamento, reutilização e redistribuição, o que gera uma nova forma de participação social e pode beneficiar milhões de brasileiros.</p>
-
-<p>Várias cidades atualmente não utilizam todo o potencial dos seus bancos de dados. As cidades têm acumulado muitas informações relevantes, mas que armazenadas de forma isolada e distantes da população, dificultam sua interpretação e aproveitamento por estudiosos, especialistas e interessados.</p>
-
-<p>Esses dados têm potencial de originar soluções importantes para as cidades.  Podem gerar informações ocultas, novas leituras sobre dados preexistentes, ter sua interpretação facilitada para leigos e cidadãos comuns, além de poderem auxiliar as ações do poder público e de planejadores.</p>
-
-<p>O objetivo deste portal é fazer com que SJC seja referência em tecnologia e inovação em relação aos aplicativos de democracia e dados abertos. Neste blog, vamos discutir a respeito das possíveis soluções que nosso governo pode ter, e desenvolver soluções de tecnologias da informação para ajudar no desenvolvimento de políticas públicas mais claras e participavas.</p>
-
-<p>Este é um passo importante para a solução de muitos dos problemas da nossa política atual, pois melhor do que reclamar é fazer.</p>
-
-<!-- more -->
-
-
-<p>[caption id=&ldquo;attachment_5&rdquo; align=&ldquo;aligncenter&rdquo; width=&ldquo;300&rdquo;]<a href="http://transparenciasjc.org/wp-content/uploads/2012/01/transparencia_politica.jpg"><img src="http://transparenciasjc.org/wp-content/uploads/2012/01/transparencia_politica-300x225.jpg" alt="Transparência" /></a> Transparência[/caption]</p>
 ]]></content>
   </entry>
   

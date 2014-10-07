@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Raspando Os Dados Do Site Da Câmara De São José Dos Campos. - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Neste artigo analisaremos a forma com que a Câmara de São José dos Campos publica os dados de transparência, e como seria o modelo ideal para esta &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:transparenciasjc.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Raspando Os Dados Do Site Da Câmara De São José Dos Campos.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-10-31T13:47:58+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>1:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Neste artigo analisaremos a forma com que a Câmara de São José dos Campos publica os dados de transparência, e como seria o modelo ideal para esta publicação. Além disto, mostraremos com códigos como fazer para transformar este dado em um objeto manipulável.</p>
+
+<!-- more -->
+
+
+<p>Acesse este <a href="http://200.174.132.60:8080/cmsjc/websis/portal_transparencia/financeiro/contas_publicas/index.php?consulta=cp_transp_desp_paga">link</a>, ele contem dados dos gastos da câmara, ele estão disponíveis através de uma tabela:<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.16.32.png" alt="Screen Shot 2013-10-31 at 11.16.32" /></a></p>
+
+<p>Conforme já citei, este não é o modelo ideal de publicação, pois não permite comparações, manipulação, e cruzamento com outros dados.</p>
+
+<p>Para chegarmos na forma ideal, clique com o botão direito em qualquer local da página e em seguida em &ldquo;inspecionar elemento&rdquo; ou &ldquo;inspect element&rdquo;,</p>
+
+<p><a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-08.43.16.png" alt="Screen Shot 2013-10-31 at 08.43.16" /></a></p>
+
+<p>Isto vai abrir uma tela que geralmente desenvolvedores e designer utilizam para verificar os elementos HTML e debugar código Javascript. Vá até a última aba chamada &ldquo;console&rdquo;.</p>
+
+<p>[caption id=&ldquo;attachment_80&rdquo; align=&ldquo;aligncenter&rdquo; width=&ldquo;500&rdquo;]<a href="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png"><img src="http://transparenciasjc.org/wp-content/uploads/2013/10/Screen-Shot-2013-10-31-at-11.34.47.png" alt="Console" /></a> Console[/caption]</p>
+
+<p>Dentro do console digite o seguinte código:</p>
+
+<pre><code>(function ($) {
+    $.fn.tableToJSON = function (opts) {
+
+        // Set options
+        var defaults = {
+            ignoreColumns: [],
+            onlyColumns: null,
+            ignoreHiddenRows: true,
+            headings: null
+        };
+        opts = $.extend(defaults, opts);
+
+        var notNull = function (value) {
+            if (value !== undefined &amp;&amp; value !== null) {
+                return true;
+            }
+            return false;
+        };
+
+        var ignoredColumn = function (index) {
+            if (notNull(opts.onlyColumns)) {
+                return $.inArray(index, opts.onlyColumns) === -1;
+            }
+            return $.inArray(index, opts.ignoreColumns) !== -1;
+        };
+
+        var arraysToHash = function (keys, values) {
+            var result = {};
+            $.each(values, function (index, value) {
+                if (index &lt; keys.length) {
+                    result[keys[index]] = value;
+                }
+            });
+            return result;
+        };
+
+        var rowValues = function (row) {
+            var result = [];
+            $(row).children("td,th").each(function (cellIndex, cell) {
+                if (!ignoredColumn(cellIndex)) {
+                    var override = $(cell).data("override");
+                    var value = $.trim($(cell).text());
+                    result[result.length] = notNull(override) ? override : value;
+                }
+            });
+            return result;
+        };
+
+        var getHeadings = function (table) {
+            var firstRow = table.find("tr:first").first();
+            return notNull(opts.headings) ? opts.headings : rowValues(firstRow);
+        };
+
+        var construct = function (table, headings) {
+            var result = [];
+            table.children("tbody,*").children("tr").each(function (rowIndex, row) {
+                if (rowIndex !== 0 || notNull(opts.headings)) {
+                    if ($(row).is(":visible") || !opts.ignoreHiddenRows) {
+                        result[result.length] = arraysToHash(headings, rowValues(row));
+                    }
+                }
+            });
+            return result;
+        };
+
+        // Run
+        var headings = getHeadings(this);
+        return construct(this, headings);
+    };
+})(jQuery);
+</code></pre>
+
+<p>Aperte CTRL + L para limpar o terminal. Digite em seguida o seguinte comando:</p>
+
+<pre><code>var table = $("#grid")
+var object = table.tableToJSON();
+var json = JSON.stringify(object);
+</code></pre>
+
+<p>Agora toda aquela tabela foi transformada em um Objeto JSON que permite ser manipulado. O resultado ideal de publicação dos dados de transparência, seria o objeto transformado em texto, que no caso acima é a variável &ldquo;json&rdquo;.</p>
+
+<p>Este foi o exemplo para apenas uma página, imagina raspar 1000 páginas destas? para isto teríamos que criar um script que recursivamente acessa as URLs e transforma o dado.</p>
+
+<p>Por isso é importante que a prefeitura/câmara publique os dados de maneira legível, pois isso acaba com a inovação. Os programadores da região perdem mais tempo &ldquo;raspando&rdquo; os dados do que fazendo aplicativos que realmente beneficiariam a sociedade, dado que raspar os dados por vezes se torna uma tarefa chata e complexa.</p>
+
+<p>O código fonte pode ser baixado <a href="https://gist.github.com/PauloLuan/7250003">aqui</a>;</p>
+
+<p>Os dados podem ser baixados <a href="https://gist.github.com/PauloLuan/7249980/raw/8acc126d2afc47acf1435f236c87404ff8743c03/Dados+C%C3%A2mara+Setembro">Aqui</a></p>
+
+<p>Fonte: <a href="https://github.com/lightswitch05/table-to-json">Biblioteca para transformar tabela em JSON</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">transparencia</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-10-31T13:47:58+00:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>1:47 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/scraps/'>scraps</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/" data-via="" data-counturl="http://transparenciasjc.github.io/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/31/dados-abertos-em-web-services/" title="Previous Post: Dados abertos em web services.">&laquo; Dados abertos em web services.</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/11/14/panorama-dos-dados-abertos-em-sao-jose-dos-campos/" title="Next Post: Panorama dos dados abertos em São José dos Campos.">Panorama dos dados abertos em São José dos Campos. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/07/18/manual-dos-dados-abertos/">Manual Dos Dados Abertos</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/03/reportagem-para-o-jornal-o-vale/">Reportagem Para O Jornal "O Vale"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/18/porto-alegre-e-o-portal-de-dados-abertos/">Porto Alegre E O Portal De Dados Abertos.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/14/panorama-dos-dados-abertos-em-sao-jose-dos-campos/">Panorama Dos Dados Abertos Em São José Dos Campos.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/31/raspando-os-dados-site-da-camara-de-sao-jose-dos-campos/">Raspando Os Dados Do Site Da Câmara De São José Dos Campos.</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
